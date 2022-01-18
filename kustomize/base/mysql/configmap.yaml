@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ConfigMap 
+metadata:
+  name: db
+data:
+  mysql-database: easyclaim
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-initdb-config
+data:
+  initdb.sql: |
+    USE `easyclaim`;
+    DROP TABLE IF EXISTS `claim`;
+
+    CREATE TABLE `claim` (
+      `id` int(11) NOT NULL AUTO_INCREMENT,
+      `billDate` datetime(6) DEFAULT NULL,
+      `billDateString` varchar(255) DEFAULT NULL,
+      `billNo` int(11) DEFAULT NULL,
+      `category` varchar(255) DEFAULT NULL,
+      `claimAmount` double DEFAULT NULL,
+      PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+    INSERT INTO `claim` VALUES (7,'2022-01-10 00:00:00.000000',NULL,10932873,'conveyance',4.67),(8,'2022-01-10 00:00:00.000000',NULL,1089268,'conveyance',45.32),(9,'2022-01-12 00:00:00.000000',NULL,108721687,'food',34.89),(10,'2022-01-13 00:00:00.000000',NULL,108732618,'food',103.56);
+
+    DROP TABLE IF EXISTS `user`;
+
+    CREATE TABLE `user` (
+      `id` int(11) NOT NULL AUTO_INCREMENT,
+      `age` int(11) DEFAULT NULL,
+      `firstName` varchar(255) DEFAULT NULL,
+      `lastName` varchar(255) DEFAULT NULL,
+      `password` varchar(255) DEFAULT NULL,
+      `salary` bigint(20) DEFAULT NULL,
+      `username` varchar(255) DEFAULT NULL,
+      PRIMARY KEY (`id`),
+      UNIQUE KEY `username_uidx` (`username`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+    INSERT INTO `user` VALUES (1,20,'Admin','Admin','$2a$10$BDCdRJdtpNVwmEPfxLVZjOFFShppjaLxXtmpjyBfw9eYrOjMb1AWe',1234,'admin'),(2,43,'Ivan','Krushkov','$2a$10$5mMJjITAnxT96.AaCzP6eeZiPgD68.b7upBCBanwoE34AszzZE6QK',1000,'ivan');
+
+

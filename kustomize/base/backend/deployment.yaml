@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-project-backend
+  labels:
+    name: my-project-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: my-project-backend
+  template:
+    metadata:
+      name: my-project-backend
+      labels:
+        name: my-project-backend
+    spec:
+      containers:
+        - name:  my-project-backend
+          image: easyclaim-backend-image
+          imagePullPolicy: Always
+          env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: db
+                  key: mysql-database        
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: mysql-user
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: mysql-password
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+          - name: config-volume
+            mountPath: "/applications/config"
+          resources:
+            requests:
+              memory: "300Mi"
+              cpu: "200m"
+            limits:
+              memory: "600Mi"
+              cpu: "400m"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 120
+            periodSeconds: 5
+      volumes:
+      - name: config-volume
+        configMap:
+          name: my-project-backend
+          items:
+          - key: application
+            path: application.properties
+
