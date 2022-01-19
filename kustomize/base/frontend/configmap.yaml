@@ -8,7 +8,7 @@ data:
   config: |-
     {
       "authConfig": {
-        "backendUrl": "https://api.example.com"
+        "backendUrl": "http://api.example.com"
       }
     }
 
