@@ -12,4 +12,4 @@ images:
   newTag: "16"
 - name: easyclaim-frontend-image
   newName: ikrushkov/my-project-frontend
-  newTag: 1.0.0-28
+  newTag: 1.0.0-29
