@@ -9,4 +9,4 @@ namespace: easyclaim
 images:
 - name: easyclaim-frontend-image
   newName: ikrushkov/my-project-frontend
-  newTag: 1.0.0-13
+  newTag: 1.0.0-27
