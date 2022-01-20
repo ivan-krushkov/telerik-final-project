@@ -6,3 +6,10 @@ resources:
  - ./backend
  - ./frontend
  - ingress.yaml
+images:
+- name: easyclaim-frontend-image
+  newName: ikrushkov/my-project-frontend
+  newTag: 1.0.0-13
+- name: easyclaim-backend-image
+  newName: ikrushkov/my-project-backend
+  newTag: "16"
