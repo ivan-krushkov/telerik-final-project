@@ -9,7 +9,7 @@ resources:
 images:
 - name: easyclaim-backend-image
   newName: ikrushkov/my-project-backend
-  newTag: 1.0.0-21
+  newTag: 1.0.0-23
 - name: easyclaim-frontend-image
   newName: ikrushkov/my-project-frontend
   newTag: 1.0.0-29
