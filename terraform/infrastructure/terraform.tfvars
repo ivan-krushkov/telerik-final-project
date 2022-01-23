@@ -4,6 +4,8 @@
 
 #password = PROXMOX_USER_PASSWORD
 
+#template_vm_name = TEMPLATE_VM_NAME
+
 #pvt_key_file = AUTHORIZED_KEYS_FILE
 
 #metallb_config = METALLB_CONFIG
